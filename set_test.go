@@ -3,8 +3,6 @@ package set
 import (
 	"fmt"
 	"testing"
-
-	"Task2/set"
 )
 
 // Helper function to check equality of two slices
@@ -25,7 +23,7 @@ func equal(a, b []interface{}) bool {
 	return true
 }
 
-var s set.Set
+var s Set
 // TestUnion tests the Union function of the set package
 func TestUnion(t *testing.T) {
 	slice1 := []interface{}{1, 2, 3}
@@ -133,3 +131,4 @@ func TestComplement(t *testing.T) {
 		fmt.Println("TestComplement PASS")
 	}
 }
+

@@ -6,5 +6,3 @@ Create a package for slices operations (2 slice) Operations on two slices - impl
 5 Is proper subset
 6 Complement of set
 
-
-package main
