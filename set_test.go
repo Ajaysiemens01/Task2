@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Ajaysiemens01/Task2/set"
+	"Task2/set"
 )
 
 // Helper function to check equality of two slices
