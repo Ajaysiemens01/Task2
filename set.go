@@ -12,17 +12,17 @@ func (s Set) Union(slice1, slice2 []interface{}) ([]interface{}, error) {
 		return nil, errors.New("input slices cannot be nil")
 	}
 	result := []interface{}{}
-	m := make(map[interface{}]bool)
-	for _, v := range slice1 {
-		if !m[v] {
-			m[v] = true
-			result = append(result, v)
+	valCount := make(map[interface{}]bool)
+	for _, val := range slice1 {
+		if !valCount[val] {
+			valCount[val] = true
+			result = append(result, val)
 		}
 	}
-	for _, v := range slice2 {
-		if !m[v] {
-			m[v] = true
-			result = append(result, v)
+	for _, val := range slice2 {
+		if !valCount[val] {
+			valCount[val] = true
+			result = append(result, val)
 		}
 	}
 	return result, nil
@@ -34,13 +34,13 @@ func (s Set) Intersection(slice1, slice2 []interface{}) ([]interface{}, error) {
 		return nil, errors.New("input slices cannot be nil")
 	}
 	result := []interface{}{}
-	m := make(map[interface{}]bool)
-	for _, v := range slice1 {
-		m[v] = true
+	valCount := make(map[interface{}]bool)
+	for _, val := range slice1 {
+		valCount[val] = true
 	}
-	for _, v := range slice2 {
-		if m[v] {
-			result = append(result, v)
+	for _, val := range slice2 {
+		if valCount[val] {
+			result = append(result, val)
 		}
 	}
 	return result, nil
@@ -54,15 +54,15 @@ func (s Set) IsEqual(slice1, slice2 []interface{}) (bool, error) {
 	if len(slice1) != len(slice2) {
 		return false, nil
 	}
-	m := make(map[interface{}]int)
-	for _, v := range slice1 {
-		m[v]++
+	valCount := make(map[interface{}]int)
+	for _, val := range slice1 {
+		valCount[val]++
 	}
-	for _, v := range slice2 {
-		if m[v] == 0 {
+	for _, val := range slice2 {
+		if valCount[val] == 0 {
 			return false, nil
 		}
-		m[v]--
+		valCount[val]--
 	}
 	return true, nil
 }
@@ -72,12 +72,12 @@ func (s Set) IsSubset(slice1, slice2 []interface{}) (bool, error) {
 	if slice1 == nil || slice2 == nil {
 		return false, errors.New("input slices are empty")
 	}
-	m := make(map[interface{}]bool)
-	for _, v := range slice2 {
-		m[v] = true
+	valCount := make(map[interface{}]bool)
+	for _, val := range slice2 {
+		valCount[val] = true
 	}
-	for _, v := range slice1 {
-		if !m[v] {
+	for _, val:= range slice1 {
+		if !valCount[val] {
 			return false, nil
 		}
 	}
@@ -99,13 +99,13 @@ func (s Set) Complement(union, slice []interface{}) ([]interface{}, error) {
 		return nil, errors.New("input slices cannot be nil")
 	}
 	result := []interface{}{}
-	m := make(map[interface{}]bool)
-	for _, v := range slice {
-		m[v] = true
+	valCount := make(map[interface{}]bool)
+	for _, val := range slice {
+		valCount[val] = true
 	}
-	for _, v := range union {
-		if !m[v] {
-			result = append(result, v)
+	for _, val := range union {
+		if !valCount[val] {
+			result = append(result, val)
 		}
 	}
 	return result, nil

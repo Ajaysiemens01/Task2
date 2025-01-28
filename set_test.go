@@ -10,15 +10,15 @@ func equal(a, b []interface{}) bool {
 	if len(a) != len(b) {
 		return false
 	}
-	m := make(map[interface{}]int)
-	for _, v := range a {
-		m[v]++
+	valCount := make(map[interface{}]int)
+	for _, val := range a {
+		valCount[val]++
 	}
-	for _, v := range b {
-		if m[v] == 0 {
+	for _, val := range b {
+		if valCount[val] == 0 {
 			return false
 		}
-		m[v]--
+		valCount[val]--
 	}
 	return true
 }
